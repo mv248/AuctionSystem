@@ -11,11 +11,9 @@
 	if (rs.next()) { 
 		//THIS DOESNT ACCOUNT FOR USERNAME BEING SAME BUT DIFFERENT PASSWORDS
 		//THIS TREATS THEM AS SEPERATE ACCOUNTS
-		session.setAttribute("user", userid); // the username will be stored in the session
-		out.println("welcome " + userid);
-		out.println("<a href='logout.jsp'>Log out</a>");
-		response.sendRedirect("success.jsp");
+		session.setAttribute("user", userid);
+		response.sendRedirect("homepage.jsp");
 	} else {
-		out.println("Invalid password <a href='index.jsp'>try again</a>");
+		out.println("Invalid username or password <a href='index.jsp'>try again</a>");
 	}
 %>
