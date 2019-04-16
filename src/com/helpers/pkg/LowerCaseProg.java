@@ -1,4 +1,4 @@
-package com.hello.jsp;
+package com.helpers.pkg;
 
 public class LowerCaseProg {
 	public static String makeItLower(String data) {

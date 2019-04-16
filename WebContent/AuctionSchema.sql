@@ -20,6 +20,8 @@ CREATE TABLE Category (
 DROP TABLE IF EXISTS `Item`;
 CREATE TABLE Item (
     name VARCHAR(50),
+    year INT,
+    brand VARCHAR(50),
     itemId INT,
     categoryName VARCHAR(50),
     sellerUserId VARCHAR(50),
@@ -94,7 +96,7 @@ CREATE TABLE Alerts (
         REFERENCES User (userId)
 );
 
-
+/*
 LOCK TABLES `User` WRITE;
 INSERT INTO `User` VALUES ('arjun', 'password', 'normal', '1');
 UNLOCK TABLES;
@@ -110,3 +112,4 @@ UNLOCK TABLES;
 LOCK TABLES `Auction` WRITE;
 INSERT INTO `Auction` VALUES ('1', '15.99', '2019-04-14 17:00:00', '2019-04-19 17:00:00', 'arjun', '1');
 UNLOCK TABLES;
+*/
