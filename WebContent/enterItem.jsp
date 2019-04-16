@@ -21,24 +21,28 @@
 		Statement stmt = con.createStatement();
 
 		//Get parameters from the HTML form at the index.jsp
+		String userId = session.getAttribute("userId").toString();
 		String category = request.getParameter("Category");
-		String year = request.getParameter("year");
 		String brand = request.getParameter("brand");
+		String name = request.getParameter("itemName");
+		String year = request.getParameter("year");
 
 		//Make an insert statement for the Sells table:
-		ResultSet res = stmt.executeQuery("SELECT COUNT(*) FROM Item");
+		ResultSet res = stmt.executeQuery("SELECT * FROM Item ORDER BY itemId DESC");
 		res.next();
-		int count = res.getInt(1);
-		String insert = "INSERT INTO Item(name, year, brand, itemId)"
-				+ "VALUES (?, ?, ?, ?)";
+		int count = res.getInt("itemId");
+		String insert = "INSERT INTO Item(name, year, brand, itemId, categoryName, sellerUserId)"
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, category);
+		ps.setString(1, name);
 		ps.setString(2, year);
 		ps.setString(3, brand);
-		ps.setInt(4, count);
+		ps.setInt(4, count + 1);
+		ps.setString(5, category);
+		ps.setString(6, userId);
 		ps.executeUpdate();
 
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.

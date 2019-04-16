@@ -24,8 +24,12 @@
 			<option value="Computer">Computer</option>
 			<option value="Laptop">Laptop</option></select></td>
 	</tr>
+	
 	<tr>
 	<td>Item Year (yyyy)</td><td><input type="text" name="year"></td>
+	</tr>
+	<tr>    
+		<td>Item Name</td><td><input type="text" name="itemName"></td>
 	</tr>
 	<tr>    
 	<td>Item Brand</td><td><input type="text" name="brand"></td>
