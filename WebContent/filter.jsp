@@ -1,32 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+
 <%
-	/* String name = request.getParameter("username");
-	String pwd = request.getParameter("password");
+	String name = request.getParameter("search");
+	String category = request.getParameter("category");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
+	Connection con = DriverManager.getConnection(
+			"jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23",
+			"4rjL34rnDB");
 	Statement st = con.createStatement();
 	ResultSet rs;
-	rs = st.executeQuery("SELECT * FROM User WHERE userId='" + userid + "' AND password='" + pwd + "'");
-	if (rs.next()) { 
-		//THIS DOESNT ACCOUNT FOR USERNAME BEING SAME BUT DIFFERENT PASSWORDS
-		//THIS TREATS THEM AS SEPERATE ACCOUNTS
-		session.setAttribute("userId", userid);
-		response.sendRedirect("homepage.jsp");
+	if (category.equals("all")) {
+		rs = st.executeQuery("SELECT * FROM Item WHERE name LIKE '%" + name + "%'");
 	} else {
-		out.println("Invalid username or password <br/><br/> <a href='index.jsp'>try again</a>");
-	} */
+		rs = st.executeQuery(
+				"SELECT * FROM Item WHERE name LIKE '%" + name + "%' " + "AND categoryName='" + category + "'");
+	}
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<title>Search Results</title>
 </head>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 15px;
+}
+</style>
 <body>
 
+	<h2>Search results for '<%out.println(name);%>' and category '<%out.println(category);%>'  </h2>
+	<table style="width: 100%">
+		<tr>
+			<th>Name</th>
+			<th>Category Name</th>
+			<th>Seller Name</th>
+		</tr>
+		<%
+			while (rs.next()) {
+		%>
+		<tr>
+			<td><a
+				href="itemPage.jsp?itemId=<%=Integer.toString(rs.getInt("itemId"))%>"><%=rs.getString("name")%></a></td>
+			<td><%=rs.getString("categoryName")%></td>
+			<td><%=rs.getString("sellerUserId")%></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
 
 </body>
 </html>

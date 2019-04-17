@@ -34,19 +34,18 @@ th, td {
 	<div class="topnav">
 		<a class="active" href="homepage.jsp">Home</a>
 		<div class="search-container">
-			<form action="filter.jsp">
+			<form action="filter.jsp" method="get">
 				<input type="text" placeholder="Search.." name="search"> 
-				<select>
-					<option selected label="category" value="all">all items</option>
+				
+				<select name="category">
+					<option selected value="all">all categories</option>
 					<%
 						while (rsd.next()) {
 					%>
-					<option name="category"
-						value="<%=rsd.getString("categoryName").toString()%>"><%=rsd.getString("categoryName").toString()%></option>
+					<option value="<%=rsd.getString("categoryName").toString()%>"><%=rsd.getString("categoryName").toString()%></option>
 					<%
 						}
 					%>
-
 				</select>
 				<button type="submit">Submit</button>
 			</form>
