@@ -10,7 +10,9 @@
 <h2> Edit Account Information </h2>
 
 	<form action="changeAccInfo.jsp" method="POST">
-		Change Password: <input type="text" name="password" /> <br />
+		User's Username: <input type="text" name="userId" /> <br />
+		New Password: <input type="text" name="password" /> <br />
+		New Card Number: <input type="text" name="cardNum" /> <br />
 		<input type="submit" value="Save Changes" /> <br />
 	</form> <br />
 

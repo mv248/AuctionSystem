@@ -10,8 +10,10 @@
 	Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
 	Statement st = con.createStatement();
 	ResultSet posts = st.executeQuery("SELECT * FROM Posts ORDER BY postId DESC");
-	posts.next();
-	int lastId = posts.getInt("postId");
+	int lastId = 0;
+	if (posts.first()) {
+		lastId = posts.getInt("postId");
+	}
 	String insert = "INSERT INTO Posts(postId, comment, parentPostId, itemId, authorId)"
 			+ "VALUES (?, ?, ?, ?, ?)";
 	PreparedStatement ps = con.prepareStatement(insert);

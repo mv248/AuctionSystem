@@ -12,6 +12,7 @@
 		//THIS DOESNT ACCOUNT FOR USERNAME BEING SAME BUT DIFFERENT PASSWORDS
 		//THIS TREATS THEM AS SEPERATE ACCOUNTS
 		session.setAttribute("userId", userid);
+		session.setAttribute("userType", rs.getString("userType"));
 		response.sendRedirect("homepage.jsp");
 	} else {
 		out.println("Invalid username or password <br/><br/> <a href='index.jsp'>try again</a>");

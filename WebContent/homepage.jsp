@@ -16,6 +16,23 @@
 	<a href = "alerts.jsp">View Alerts</a>
 	<br/>
 	<a href = "search.jsp">Search</a>
+	
+	<br/><br/>
+	
+	<%
+		String userType = session.getAttribute("userType").toString();
+		if (userType.equals("admin")) {
+			%>
+			<a href = "createCustomerRep.jsp">Create Customer Representative Account</a>
+			<%
+		} 
+		else if (userType.equals("customerRep")) {
+			%>
+			<a href = "editAccInfo.jsp">Edit User Account Information</a>
+			<%
+		}
+	%>
+	
 	<br/><br/><br/>
 	<a href='logout.jsp'>Log out</a>
 </body>

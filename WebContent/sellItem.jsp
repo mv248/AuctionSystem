@@ -19,7 +19,7 @@
 	<form method="POST" action="enterItem.jsp">
 	<table>
 	<tr>    
-	<td>Item Category</td><td><select name="Category" size=1>
+	<td>Item Category</td><td><select name="category" size=1>
 			<option value="Phone">Phone</option>
 			<option value="Computer">Computer</option>
 			<option value="Laptop">Laptop</option></select></td>
@@ -35,21 +35,26 @@
 	<td>Item Brand</td><td><input type="text" name="brand"></td>
 	</tr>
 	<tr>
-	<td>Starting Price Value ($$.$$)</td><td><input type="text" name="startValue"></td>
+	<tr> <td> <h3>Auction Information</h3> </td> </tr>
+	<td>Starting Price Value ($$.$$)</td><td><input type="number" min="0" name="startPrice"></td>
 	</tr>
 	<tr>
-	<td>Reserve Price Value ($$.$$)</td><td><input type="text" name="reserve"></td>
+	<td>Reserve Price Value ($$.$$)</td><td><input type="number" min="0" name="reservePrice"></td>
 	</tr>
 	<tr>
-	<td>Increment Bid Value ($$.$$)</td><td><input type="text" name="bidIncrement"></td>
+	<td>Increment Bid Value ($$.$$)</td><td><input type="number" min="0" name="bidIncrement"></td>
 	</tr>
 	<tr>
-	<td>Item End Date (yyyy-mm-dd hh:mm:ss)</td><td><input type="text" name="endDate"></td>
+	<td>Item End Date/Time </td><td><input type="datetime-local" name="endTime"></td>
 	</tr>
 	</table>
-	<input type="Submit" value="Sell Item and List">
+	<br/><br/>
+	<input type="Submit" value="Post Item">
 
 	</form>
+	
+	<br/><br/>
+	<a href=homepage.jsp> Home </a>
 <br>
 </body>
 

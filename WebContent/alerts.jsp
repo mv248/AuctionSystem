@@ -8,10 +8,12 @@
 	String query = "SELECT * FROM Alerts WHERE userid='" + userid + "'";
 	ResultSet res = st.executeQuery(query);
 	boolean flag = false;
+	int i = 0;
 	while (res.next()) { 
+		i++;
 		flag = true;
 		String message = res.getString("message");
-	%> <div> <%= message %> </div> <%
+	%> <div> <%= i %>.) <%= message %> </div> <%
 	}
 	if (!flag) {
 		out.println("No Alerts");
