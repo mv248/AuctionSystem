@@ -39,9 +39,9 @@ CREATE TABLE Auction (
     sellerId VARCHAR(50),
     itemId INT,
     PRIMARY KEY (auctionId),
-	FOREIGN KEY (sellerId)
+    FOREIGN KEY (sellerId)
         REFERENCES User (userId),
-	FOREIGN KEY (itemId)
+    FOREIGN KEY (itemId)
         REFERENCES Item (itemId)
 );
 
@@ -112,4 +112,26 @@ UNLOCK TABLES;
 LOCK TABLES `Auction` WRITE;
 INSERT INTO `Auction` VALUES ('1', '15.99', '2019-04-14 17:00:00', '2019-04-19 17:00:00', 'arjun', '1');
 UNLOCK TABLES;
+
+use AuctionSystem;
+select * from Item where name like "%mac%" and categoryName="Laptop"
+
+USE AuctionSystem;
+SELECT * FROM Item 
+WHERE name LIKE '%mac%' 
+AND categoryName='Phone' 
+AND itemID IN 
+	(SELECT itemId FROM Auction
+    WHERE currentBidId IN 
+		(SELECT bidId FROM Bids
+        WHERE (amount < 500))
+        )
+        
+USE AuctionSystem;     
+Select * FROM Auction where sellerId='ravi' group by endTime;
+SELECT * FROM Item WHERE sellerUserId = 'ravi';
+SELECT * FROM Item AS I INNER JOIN Bids AS B ON I.itemID=B.itemId
+WHERE B.ownerId= 'arjun'; 
 */
+
+

@@ -6,18 +6,24 @@
 <%
 	String name = request.getParameter("search");
 	String category = request.getParameter("category");
+	String price = request.getParameter("bidPrice");
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection(
 			"jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23",
 			"4rjL34rnDB");
 	Statement st = con.createStatement();
 	ResultSet rs;
+	String sql;
 	if (category.equals("all")) {
-		rs = st.executeQuery("SELECT * FROM Item WHERE name LIKE '%" + name + "%'");
+		sql = ("SELECT * FROM Item WHERE name LIKE '%" + name + "%'");
 	} else {
-		rs = st.executeQuery(
-				"SELECT * FROM Item WHERE name LIKE '%" + name + "%' " + "AND categoryName='" + category + "'");
+		sql = ("SELECT * FROM Item WHERE name LIKE '%" + name + "%' " + "AND categoryName='" + category + "'");
 	}
+	if (price != "") {
+		sql = sql.concat(" AND itemID IN (SELECT itemId FROM Auction WHERE currentBidId IN (SELECT bidId FROM Bids WHERE (amount < " + price + " ))) ");
+	}
+	out.println(sql);
+	rs = st.executeQuery(sql);
 %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +44,7 @@ th, td {
 </style>
 <body>
 
-	<h2>Search results for '<%out.println(name);%>' and category '<%out.println(category);%>'  </h2>
+	<h2>Search results for '<%out.println(name);%>' and category '<%out.println(category);%>' in  price range under '<%out.println(price);%>' </h2>
 	<table style="width: 100%">
 		<tr>
 			<th>Name</th>
