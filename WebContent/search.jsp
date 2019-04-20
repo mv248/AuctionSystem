@@ -33,24 +33,25 @@ th, td {
 	%>
 	<div class="topnav">
 		<a class="active" href="homepage.jsp">Home</a>
+		<br><br>
 		<div class="search-container">
-			<form action="filter.jsp">
-				<input type="text" placeholder="Search.." name="search"> 
-				<select>
-					<option selected label="category" value="all">all items</option>
+			<form action="filter.jsp" method="get">
+				<input type="text" placeholder="filter by name" name="search"> 
+				<input type="number" placeholder="filter by max price" name="bidPrice">
+				<select name="category">
+					<option selected value="all">all categories</option>
 					<%
 						while (rsd.next()) {
 					%>
-					<option name="category"
-						value="<%=rsd.getString("categoryName").toString()%>"><%=rsd.getString("categoryName").toString()%></option>
+					<option value="<%=rsd.getString("categoryName").toString()%>"><%=rsd.getString("categoryName").toString()%></option>
 					<%
 						}
 					%>
-
 				</select>
 				<button type="submit">Submit</button>
 			</form>
 		</div>
+		<br>
 	</div>
 
 
@@ -69,10 +70,9 @@ th, td {
 			while (rs.next()) {
 		%>
 		<tr>
-			<td><a
-				href="itemPage.jsp?itemId=<%=Integer.toString(rs.getInt("itemId"))%>"><%=rs.getString("name")%></a></td>
+			<td><a href="itemPage.jsp?itemId=<%=Integer.toString(rs.getInt("itemId"))%>"><%=rs.getString("name")%></a></td>
 			<td><%=rs.getString("categoryName")%></td>
-			<td><%=rs.getString("sellerUserId")%></td>
+			<td><a href="userPage.jsp?userId=<%=rs.getString("sellerUserId")%>"><%=rs.getString("sellerUserId")%></a></td>
 		</tr>
 		<%
 			}
