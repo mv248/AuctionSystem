@@ -11,8 +11,8 @@
 
 	<h2>Create Customer Representative Account</h2>
 	<form action="CreateAccount.jsp" method="POST">
-		Username: <input type="text" name="username"/> <br/> 
-		Password:<input type="password" name="password"/> <br/>
+		Username: <input type="text" name="username" required/> <br/> 
+		Password:<input type="password" name="password" required/> <br/>
 		<input type="hidden" name="userType" value="customerRep" /> <br/> 
 		<input type="submit" formaction="CreateAccount.jsp" value="Create Login"> <br/> 
 	</form> <br />

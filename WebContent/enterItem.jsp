@@ -34,9 +34,10 @@
 
 		// insert Item
 		ResultSet res = stmt.executeQuery("SELECT * FROM Item ORDER BY itemId DESC");
-		int itemId = 0;
+		int itemId = 1;
 		if (res.first()) {
-			itemId = res.getInt("itemId");
+			res.first();
+			itemId = res.getInt("itemId") + 1;
 		}
 		String insert = "INSERT INTO Item(name, year, brand, itemId, categoryName, sellerUserId)"
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -47,7 +48,7 @@
 		ps.setString(1, name);
 		ps.setString(2, year);
 		ps.setString(3, brand);
-		ps.setInt(4, itemId + 1);
+		ps.setInt(4, itemId);
 		ps.setString(5, category);
 		ps.setString(6, userId);
 		ps.executeUpdate();
@@ -68,15 +69,14 @@
 		aps.setFloat(2, startPrice);
 		aps.setFloat(3, reserve);
 		aps.setString(4, userId);
-		aps.setInt(5, itemId + 1);
+		aps.setInt(5, itemId);
 		aps.setTimestamp(6, endTime);
 		aps.setFloat(7, bidIncrement);
 		aps.executeUpdate();
 
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
-		out.println("Posted Item! <br/><br/>");
-		out.println("<a href=homepage.jsp> Home </a>");
+		response.sendRedirect("itemPage.jsp?itemId=" + itemId);
 		
 	} catch (Exception ex) {
 		out.println(ex);

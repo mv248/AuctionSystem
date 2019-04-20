@@ -13,7 +13,7 @@
 		i++;
 		flag = true;
 		String message = res.getString("message");
-	%> <div> <%= i %>.) <%= message %> </div> <%
+		out.println(i + ".) " + message + "<br/>");
 	}
 	if (!flag) {
 		out.println("No Alerts");

@@ -26,26 +26,26 @@
 	</tr>
 	
 	<tr>
-	<td>Item Year (yyyy)</td><td><input type="text" name="year"></td>
+	<td>Item Year (yyyy)</td><td><input type="text" name="year" required></td>
 	</tr>
 	<tr>    
-		<td>Item Name</td><td><input type="text" name="itemName"></td>
+		<td>Item Name</td><td><input type="text" name="itemName" required></td>
 	</tr>
 	<tr>    
 	<td>Item Brand</td><td><input type="text" name="brand"></td>
 	</tr>
 	<tr>
 	<tr> <td> <h3>Auction Information</h3> </td> </tr>
-	<td>Starting Price Value ($$.$$)</td><td><input type="number" min="0" name="startPrice"></td>
+	<td>Starting Price Value ($$.$$)</td><td><input type="number" min="0" step="0.01" name="startPrice" value="0" required></td>
 	</tr>
 	<tr>
-	<td>Reserve Price Value ($$.$$)</td><td><input type="number" min="0" name="reservePrice"></td>
+	<td>Reserve Price Value ($$.$$)</td><td><input type="number" min="0" step="0.01" name="reservePrice" value="0" required></td>
 	</tr>
 	<tr>
-	<td>Increment Bid Value ($$.$$)</td><td><input type="number" min="0" name="bidIncrement"></td>
+	<td>Increment Bid Value ($$.$$)</td><td><input type="number" min="0.01" step="0.01" name="bidIncrement" value="0.01" required></td>
 	</tr>
 	<tr>
-	<td>Item End Date/Time </td><td><input type="datetime-local" name="endTime"></td>
+	<td>Item End Date/Time </td><td><input type="datetime-local" name="endTime" required></td>
 	</tr>
 	</table>
 	<br/><br/>

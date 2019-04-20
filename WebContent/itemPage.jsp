@@ -26,8 +26,9 @@ td {
 	ResultSet auction = st2.executeQuery("SELECT * FROM Auction WHERE itemId=" + itemId);
 	item.next();
 	auction.next();
+	boolean completed = auction.getBoolean("completed");
 	ResultSet bid = null;
-	float minBid = 0;
+	float minBid = auction.getFloat("startPrice");
 	boolean activeBid = auction.getInt("currentBidId") > 0;
 	if (activeBid) {
 		bid = st3.executeQuery("SELECT * FROM Bids WHERE bidId=" + auction.getInt("currentBidId"));
@@ -56,7 +57,13 @@ td {
 			<td>Brand:</td>
 			<td><%= item.getString("brand") %></td>
 			<%
-				if (activeBid) {
+				if (completed && !activeBid) {
+					%> <td style="color:red"> Auction Expired (No Winner) </td> <%
+				}
+				else if (completed && activeBid) {
+					%> <td style="color:green"> Auction Completed - Sold to <%= bid.getString("ownerId") %> for $<%= bid.getFloat("amount") %>! </td> <%
+				}
+				else if (activeBid) {
 					%>
 					<td>Current Bid:</td>
 					<td>$<%= bid.getFloat("amount") %> by <%= bid.getString("ownerId") %></td>
@@ -67,15 +74,21 @@ td {
 		<tr>
 			<td>Category:</td>
 			<td><%= item.getString("categoryName")%></td>
-			<td> Place Bid:</td><td>
-				<form action="placeBid.jsp">
-					<input type="number" min=<%= minBid %> placeholder="Bid Amount" name="bidAmount"></input> 
-					<input type="number" placeholder="Bid Upper Limit" name="upperLimit"></input> 
-					<input type="hidden" name="auctionId" value=<%= auction.getInt("auctionId") %>></input>
-					<input type="hidden" name="itemId" value=<%= itemId %>></input>
-					<button type="submit">Place Bid</button>
-				</form>
-			</td>
+			<%
+				if (!completed) {
+					%>
+					<td> Place Bid:</td><td>
+						<form action="placeBid.jsp">
+							<input type="number" min=<%= minBid %> step="0.01" placeholder="Bid Amount" name="bidAmount" required></input> 
+							<input type="number" min=<%= minBid %> step="0.01" placeholder="Bid Upper Limit" name="upperLimit" required></input> 
+							<input type="hidden" name="auctionId" value=<%= auction.getInt("auctionId") %>></input>
+							<input type="hidden" name="itemId" value=<%= itemId %>></input>
+							<button type="submit">Place Bid</button>
+						</form>
+					</td>
+					<%
+				}
+			%>
 		</tr>
 		<tr>
 			<td>Seller:</td>
