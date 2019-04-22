@@ -94,6 +94,10 @@ td {
 			<td>Seller:</td>
 			<td><%= item.getString("sellerUserId") %>
 			</td>
+			<%
+				String url = "bidHistory.jsp?itemId=" + itemId;
+				%><td> <a href = <%= url %>> View this Item's Bid History </a> </td><%
+			%>
 		</tr>
 	</table>
 

@@ -54,6 +54,10 @@
 	
 	//link to auction
 	st.executeUpdate("UPDATE Auction SET currentBidId=" + (lastId + 1) + " WHERE auctionId=" + auctionId + ";");
+
+	//run autobid
+	st.execute("call AutoBid(" + itemId + ")");
+	
 	con.close();
 	response.sendRedirect("itemPage.jsp?itemId=" + itemId);
 %>

@@ -10,7 +10,7 @@
 	Statement st = con.createStatement();
 	ResultSet res = st.executeQuery("SELECT * FROM `User` WHERE userId='" + userid + "'");
 	if (!res.first()) {
-		int rows = st.executeUpdate("INSERT INTO `User` (userId, password, userType) VALUES ('" + userid + "', '" + pwd + "', '" + userType + ")");
+		int rows = st.executeUpdate("INSERT INTO `User` (userId, password, userType) VALUES ('" + userid + "', '" + pwd + "', '" + userType + "')");
 		out.println("Account created for " + userid);
 		out.println("<br/><br/><a href='index.jsp'>Return to Home Page</a>");
 	} else {

@@ -10,7 +10,15 @@
 <h2> Edit Account Information </h2>
 
 	<form action="changeAccInfo.jsp" method="POST">
-		User's Username: <input type="text" name="userId" /> <br />
+		<%
+			String userId = session.getAttribute("userId").toString();
+			String userType = session.getAttribute("userType").toString();
+			if (userType.equals("customerRep")) {
+				%> User's Username: <input type="text" name="userId"/> <br/> <%
+			} else {
+				%> <input type="hidden" name="userId" value = <%= userId %> /> <%
+			}
+		%>
 		New Password: <input type="text" name="password" /> <br />
 		New Card Number: <input type="text" name="cardNum" /> <br />
 		<input type="submit" value="Save Changes" /> <br />

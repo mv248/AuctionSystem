@@ -15,12 +15,12 @@
 	<br/>
 	<a href = "alerts.jsp">View Alerts</a>
 	<br/>
-	<a href = "search.jsp">Search</a>
+	<a href = "search.jsp">Search / View Item Listings</a>
 	
 	<br/><br/>
 	
 	<%
-		String userType = session.getAttribute("userType").toString();
+		String userType = session.getAttribute("userId").toString();
 		if (userType.equals("admin")) {
 			%>
 			<a href = "createCustomerRep.jsp">Create Customer Representative Account</a>
