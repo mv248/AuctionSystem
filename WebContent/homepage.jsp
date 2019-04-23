@@ -12,14 +12,24 @@
 		<%
 		String userType = session.getAttribute("userType").toString();
 		if (userType.equals("admin")) {
-		%>
+			%>
 			<a href = "createCustomerRep.jsp">Create Customer Representative Account</a>
 			<br/>
 			<a href = "salesReport.jsp">Generate Sales Report</a>
 			<br/>
-		<%
-		} else {
-		%>
+			<%
+		} 
+		else if (userType.equals("customerRep")) {
+			%>
+			<a href = "search.jsp">Search</a>
+			<br/>
+			<a href = "editAccInfo.jsp">Edit User Account Information</a>
+			<br/>
+			<a href = "deleteAuction.jsp"> Delete Auction</a>
+			<%
+		}
+		else if (userType.equals("normal")) {
+			%>
 			<a href = "sellItem.jsp">Sell Item</a>
 			<br/>
 			<a href = "editAccInfo.jsp">Edit Account Information</a>
@@ -27,21 +37,19 @@
 			<a href = "alerts.jsp">View Alerts</a>
 			<br/>
 			<a href = "search.jsp">Search</a>
-			
+			<br/>
+			<a href = "subscribe.jsp">Subscribe</a>
 			<br/><br/>
-			<h3>Customer Rep Features</h3>
+	
+			
+			
+			
+			
 			<%
-			if (userType.equals("customerRep")) {
-			%>
-			<a href = "editAccInfo.jsp">Edit User Account Information</a>
-			<br/><a href = "deleteAuction.jsp"> Delete Auction</a>
-			<%
-			}
-			%>
+		}			
 		
-		<%
-		}	
-		%>
+		
+	%>
 	
 	<br/><br/><br/>
 	<a href='logout.jsp'>Log out</a>

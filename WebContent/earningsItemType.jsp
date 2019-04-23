@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" %>
+<%@ page  import="com.helpers.pkg.*"%>
 <!--Import some libraries that have classes that we need -->
-<%@ page import="com.helpers.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,14 +60,14 @@
 		//make a row
 		out.print("<tr>");
 		out.print("<td>");
-		out.print("Laptop Earnings]");
+		out.print("Laptop Earnings ");
 		out.print("</td>");
 		//make a column
 		out.print("<td>");
-		out.print("Phone Earnings");
+		out.print("Phone Earnings ");
 		out.print("</td>");
 		out.print("<td>");
-		out.print("Computer Earnings");
+		out.print("Computer Earnings ");
 		out.print("</td>");
 		
 		

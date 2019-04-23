@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ page  import="com.helpers.pkg.*"%>
 <!--Import some libraries that have classes that we need -->
+<%@ page  import="com.helpers.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Earnings per End-User</title>
+<title>Best Buyers</title>
 
-<h1> Earnings per End-User</h1>
+<h1> Best Buyers</h1>
 </head>
 <body>
 	<%
@@ -61,7 +61,7 @@
 		//make a row
 		out.print("<tr>");
 		out.print("<td>");
-		out.print("Seller");
+		out.print("Buyer");
 		out.print("</td>");
 		//make a column
 		out.print("<td>");
@@ -70,7 +70,7 @@
 		
 	
 	//	String str = "SELECT sellerUserId FROM Auction a, Bids b, Item i WHERE a.sellerId = i.sellerUserId AND a.completed = 1 AND a.currentBidId IS NOT NULL";
-		String str = "SELECT userId FROM User WHERE userType = 'normal'";	
+		String str = "SELECT DISTINCT u.userId FROM User u, Bids b WHERE u.userId = b.ownerId AND u.userType = 'normal' ORDER BY b.amount DESC";
 	
 		ResultSet resultstr = stmt.executeQuery(str);
 		
@@ -82,7 +82,7 @@
 		
 		//out.print(seller);
 
-		String str2 = "SELECT SUM(b.amount) AS 'catPhone' FROM Auction a, Bids b, Item i WHERE a.currentBidId = b.bidId AND a.itemId = i.itemId AND a.completed = 1 AND a.currentBidId IS NOT NULL AND i.sellerUserId ='"+ seller+"'";
+		String str2 = "SELECT SUM(b.amount) AS 'catPhone' FROM Auction a, Bids b, Item i WHERE a.currentBidId = b.bidId AND a.itemId = i.itemId AND a.completed = 1 AND a.currentBidId IS NOT NULL AND b.ownerId='"+ seller+"'";
 		
 		ResultSet resultstr2 = stmtt.executeQuery(str2);
 		
@@ -98,7 +98,7 @@
 		out.print(seller);
 		out.print("</td>");
 		out.print("<td>");
-		out.print("$" +sum);
+		out.print("$"+sum);
 		out.print("</tr>");
 		
 		}
