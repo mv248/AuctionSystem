@@ -12,7 +12,9 @@ td {
 	min-width: 10%;
 	padding-right: 2rem;
 }
+
 </style>
+
 <body>
 
 	<%
@@ -105,6 +107,41 @@ td {
 	</table>
 
 	<br />
+	
+	<h3>Similar Items</h3>
+
+	<%
+	String category = item.getString("categoryName");
+	Statement stA = con.createStatement();
+	ResultSet rsA;
+	String sqlA = "";
+	if (category != "") {
+		sqlA = ("SELECT * FROM Item WHERE categoryName='" + category + "';");
+	}
+	//out.println(sql);
+	rsA = stA.executeQuery(sqlA);
+%>
+	
+	<table style="width: 100%">
+		<tr>
+			<th>Name</th>
+			<th>Category Name</th>
+			<th>Seller Name</th>
+		</tr>
+		<%
+			while (rsA.next()) {
+		%>
+		<tr>
+			<td><a
+				href="itemPage.jsp?itemId=<%=Integer.toString(rsA.getInt("itemId"))%>"><%=rsA.getString("name")%></a></td>
+			<td><%=rsA.getString("categoryName")%></td>
+			<td><%=rsA.getString("sellerUserId")%></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+	
 	<h3>Frequently Asked Questions</h3>
 
 	Ask a Question
@@ -165,7 +202,7 @@ td {
 	
 	Traverse t = new Traverse();
 	t.showPosts(con, 0, 0, out);
-	
+	con.close();
 %>
 
 	<br />

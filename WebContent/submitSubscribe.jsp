@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Subscribing</title>
 </head>
 <body>
-<%
+<%	
+	try {
 		String name = request.getParameter("itemName");
 		String userId = session.getAttribute("userId").toString();
 		Class.forName("com.mysql.jdbc.Driver");
@@ -34,10 +34,16 @@
 		if (name == ("")) {
 			//do nothing	
 		} else {
-			sql2 = "INSERT INTO `Subscriptions` VALUES ('" + id + "', '" + userId + "', '" + name + "');";
+			sql2 = "INSERT INTO `Subscriptions` VALUES ('" + (id + 1) + "', '" + userId + "', '" + name + "');";
 			st2.executeUpdate(sql2);
 		}
 		con.close();
+	} catch (Exception ex) {
+		out.print(ex);
+		out.print(".\nItem Listing DB Failed :()");
+	}
+	response.sendRedirect("homepage.jsp");
 	%>
+	
 </body>
 </html>

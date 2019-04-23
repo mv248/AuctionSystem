@@ -21,7 +21,7 @@
 	if (price != "") {
 		sql = sql.concat(" AND itemID IN (SELECT itemId FROM Auction WHERE currentBidId IN (SELECT bidId FROM Bids WHERE (amount < " + price + " ))) ");
 	}
-	out.println(sql);
+	//out.println(sql);
 	rs = st.executeQuery(sql);
 %>
 
