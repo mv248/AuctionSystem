@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -20,9 +22,16 @@
 	<table>
 	<tr>    
 	<td>Item Category</td><td><select name="category" size=1>
-			<option value="Phone">Phone</option>
-			<option value="Computer">Computer</option>
-			<option value="Laptop">Laptop</option></select></td>
+	<%
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
+		Statement std = con.createStatement();
+		ResultSet res = std.executeQuery("SELECT name FROM Category");
+		while (res.next()) {
+			%> <option value="<%= res.getString("name") %>"><%= res.getString("name") %></option> <%
+		}
+	%>
+	</td>
 	</tr>
 	<tr>    
 	<td>Item Condition</td><td><select name="condition" size=1>
