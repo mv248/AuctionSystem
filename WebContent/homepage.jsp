@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.Timer,java.util.*,java.text.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,29 +9,39 @@
 <body>
 	<h1>Home Page</h1>
 
-	<a href = "sellItem.jsp">Sell Item</a>
-	<br/>
-	<a href = "editAccInfo.jsp">Edit Account Information</a>
-	<br/>
-	<a href = "alerts.jsp">View Alerts</a>
-	<br/>
-	<a href = "search.jsp">Search / View Item Listings</a>
-	
-	<br/><br/>
-	
-	<%
-		String userType = session.getAttribute("userId").toString();
+		<%
+		String userType = session.getAttribute("userType").toString();
 		if (userType.equals("admin")) {
-			%>
+		%>
 			<a href = "createCustomerRep.jsp">Create Customer Representative Account</a>
+			<br/>
+			<a href = "salesReport.jsp">Generate Sales Report</a>
+			<br/>
+		<%
+		} else {
+		%>
+			<a href = "sellItem.jsp">Sell Item</a>
+			<br/>
+			<a href = "editAccInfo.jsp">Edit Account Information</a>
+			<br/>
+			<a href = "alerts.jsp">View Alerts</a>
+			<br/>
+			<a href = "search.jsp">Search</a>
+			
+			<br/><br/>
+			<h3>Customer Rep Features</h3>
 			<%
-		} 
-		else if (userType.equals("customerRep")) {
+			if (userType.equals("customerRep")) {
 			%>
 			<a href = "editAccInfo.jsp">Edit User Account Information</a>
+			<br/><a href = "deleteAuction.jsp"> Delete Auction</a>
 			<%
-		}
-	%>
+			}
+			%>
+		
+		<%
+		}	
+		%>
 	
 	<br/><br/><br/>
 	<a href='logout.jsp'>Log out</a>
