@@ -29,7 +29,7 @@ th, td {
 				"jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23",
 				"4rjL34rnDB");
 		Statement std = con.createStatement();
-		ResultSet rsd = std.executeQuery("SELECT DISTINCT(categoryName) FROM Item");
+		ResultSet rsd = std.executeQuery("SELECT name FROM Category");
 	%>
 	<div class="topnav">
 		<a class="active" href="homepage.jsp">Home</a>
@@ -43,7 +43,7 @@ th, td {
 					<%
 						while (rsd.next()) {
 					%>
-					<option value="<%=rsd.getString("categoryName").toString()%>"><%=rsd.getString("categoryName").toString()%></option>
+					<option value="<%=rsd.getString("name").toString()%>"><%=rsd.getString("name").toString()%></option>
 					<%
 						}
 					%>

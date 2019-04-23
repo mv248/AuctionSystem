@@ -11,17 +11,16 @@
 	
 	<%
 		class MyTask extends TimerTask {
-			Connection con;
 			
-			public MyTask(Connection con) {
-				this.con = con;
-			}
+			public MyTask() {}
 			
 			@Override
 			public void run() {
 				try {
-					Statement st = this.con.createStatement();
-					Statement st2 = this.con.createStatement();
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
+					Statement st = con.createStatement();
+					Statement st2 = con.createStatement();
 					ResultSet auctions = st.executeQuery("SELECT * FROM Auction");
 					while (auctions.next()) {
 						Timestamp endTime = auctions.getTimestamp("endTime");
@@ -85,6 +84,7 @@
 							}
 						}
 					}
+					con.close();
 				} catch (Exception e) {
 					System.out.println(e);
 					//e.printStackTrace();
@@ -95,7 +95,7 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
 		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new MyTask(con), 1000, 1000);
+		timer.scheduleAtFixedRate(new MyTask(), 1000, 1000);
 	%>
 
 	<h2>Login or Create an Account</h2>

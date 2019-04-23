@@ -17,6 +17,8 @@
 			<br/>
 			<a href = "salesReport.jsp">Generate Sales Report</a>
 			<br/>
+			<a href = "insertCat.jsp">Add Category</a>
+			<br/>
 		<%
 		} 
 		else if (userType.equals("customerRep")) {
@@ -24,6 +26,10 @@
 			<a href = "search.jsp">Search</a>
 			<br/>
 			<a href = "editAccInfo.jsp">Edit User Account Information</a>
+			<br/>
+			<a href = "editBid.jsp"> Edit Bid</a>
+			<br/>
+			<a href = "editAuction.jsp"> Edit Auction</a>
 			<br/>
 			<a href = "deleteBid.jsp"> Delete Bid</a>
 			<br/>
