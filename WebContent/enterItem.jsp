@@ -26,6 +26,7 @@
 		String brand = request.getParameter("brand");
 		String name = request.getParameter("itemName");
 		String year = request.getParameter("year");
+		String condition = request.getParameter("condition");
 		float startPrice = Float.parseFloat(request.getParameter("startPrice"));
 		float reserve = Float.parseFloat(request.getParameter("reservePrice"));
 		float bidIncrement = Float.parseFloat(request.getParameter("bidIncrement"));
@@ -39,8 +40,8 @@
 			res.first();
 			itemId = res.getInt("itemId") + 1;
 		}
-		String insert = "INSERT INTO Item(name, year, brand, itemId, categoryName, sellerUserId)"
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO Item(name, year, brand, itemId, categoryName, sellerUserId, `condition`)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 
@@ -51,6 +52,7 @@
 		ps.setInt(4, itemId);
 		ps.setString(5, category);
 		ps.setString(6, userId);
+		ps.setString(7, condition);
 		ps.executeUpdate();
 		
 		// insert Auction

@@ -24,7 +24,13 @@
 			<option value="Computer">Computer</option>
 			<option value="Laptop">Laptop</option></select></td>
 	</tr>
-	
+	<tr>    
+	<td>Item Condition</td><td><select name="condition" size=1>
+			<option value="New">New</option>
+			<option value="Used">Used</option>
+			<option value="Refurbished">Refurbished</option></select></td>
+	</tr>
+	<tr>
 	<tr>
 	<td>Item Year (yyyy)</td><td><input type="text" name="year" required></td>
 	</tr>

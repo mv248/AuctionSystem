@@ -104,6 +104,10 @@
 		else if((sum3>sum)&&(sum3>sum2)){
 			out.print("Best Selling Item: Computers");
 			}
+		else if((sum==0)&&(sum2==0)&&(sum3==0)){
+			
+			out.print("Best Selling Items: ");
+			}
 		else if(sum==sum3){
 			out.print("Best Selling Items: Laptops and Computers");
 		}
