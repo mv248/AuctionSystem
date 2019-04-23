@@ -44,18 +44,18 @@ td {
 		<tr>
 			<td>Name:</td>
 			<td><%= item.getString("name") %></td>
-			<td>Start Price:</td>
-			<td>$<%= auction.getFloat("startPrice") %></td>
-		</tr>
-		<tr>
-			<td>Year:</td>
-			<td><%= item.getString("year") %></td>
 			<td>End Time:</td>
 			<td><%= auction.getTimestamp("endTime") %></td>
 		</tr>
 		<tr>
 			<td>Brand:</td>
 			<td><%= item.getString("brand") %></td>
+			<td>Start Price:</td>
+			<td>$<%= auction.getFloat("startPrice") %></td>
+		</tr>
+		<tr>
+			<td>Year:</td>
+			<td><%= item.getString("year") %></td>
 			<%
 				if (completed && !activeBid) {
 					%> <td style="color:red"> Auction Expired (No Winner) </td> <%
@@ -72,8 +72,8 @@ td {
 			%>
 		</tr>
 		<tr>
-			<td>Category:</td>
-			<td><%= item.getString("categoryName")%></td>
+			<td>Condition:</td>
+			<td><%= item.getString("condition") %></td>
 			<%
 				if (!completed) {
 					%>
@@ -91,13 +91,16 @@ td {
 			%>
 		</tr>
 		<tr>
-			<td>Seller:</td>
-			<td><%= item.getString("sellerUserId") %>
-			</td>
+			<td>Category:</td>
+			<td><%= item.getString("categoryName")%></td>
 			<%
 				String url = "bidHistory.jsp?itemId=" + itemId;
 				%><td> <a href = <%= url %>> View this Item's Bid History </a> </td><%
 			%>
+		</tr>
+		<tr>
+			<td>Seller:</td>
+			<td><%= item.getString("sellerUserId") %> </td>
 		</tr>
 	</table>
 

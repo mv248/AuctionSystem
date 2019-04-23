@@ -34,6 +34,7 @@
 			if (userType.equals("customerRep")) {
 			%>
 			<a href = "editAccInfo.jsp">Edit User Account Information</a>
+			<br/><a href = "deleteBid.jsp"> Delete Bid</a>
 			<br/><a href = "deleteAuction.jsp"> Delete Auction</a>
 			<%
 			}

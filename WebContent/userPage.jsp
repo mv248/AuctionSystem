@@ -26,7 +26,7 @@ th, td {
 	Statement st = con.createStatement();
 	Statement st2 = con.createStatement();
 	ResultSet rs = st.executeQuery("SELECT * FROM Item WHERE sellerUserId='" + userId + "';");
-	ResultSet rs2 = st2.executeQuery("SELECT * FROM Item AS I INNER JOIN Bids AS B ON I.itemID=B.itemId WHERE B.ownerId= '" + userId + "'; ");
+	ResultSet rs2 = st2.executeQuery("SELECT *, B.bidId as bidId FROM Item AS I INNER JOIN Bids AS B ON I.itemID=B.itemId WHERE B.ownerId= '" + userId + "'; ");
 	
 	%>
 	<h1><%out.println(userId);%>'s Profile </h1>
@@ -41,6 +41,7 @@ th, td {
 		%>
 		<tr>
 			<td><%=rs.getString("name")%></td>
+			
 			<td><%=rs.getString("itemId")%></td>
 			<td><%=rs.getString("categoryName")%></td>
 		</tr>
@@ -52,6 +53,7 @@ th, td {
 	<table style="width: 100%">
 		<tr>
 			<th>Items Bid On</th>
+			<th>Bid Id</th>
 			<th>ItemId</th>
 			<th>Category</th>
 			<th>Bid Amount</th>
@@ -61,6 +63,7 @@ th, td {
 		%>
 		<tr>
 			<td><%=rs2.getString("name")%></td>
+			<td><%=rs2.getString("bidId")%></td>
 			<td><%=rs2.getString("itemId")%></td>
 			<td><%=rs2.getString("categoryName")%></td>
 			<td><%=rs2.getString("amount")%></td>
