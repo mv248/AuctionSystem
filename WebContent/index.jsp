@@ -24,7 +24,8 @@
 					ResultSet auctions = st.executeQuery("SELECT * FROM Auction");
 					while (auctions.next()) {
 						Timestamp endTime = auctions.getTimestamp("endTime");
-						Timestamp curr = new Timestamp(System.currentTimeMillis());
+						int offset = 1000 * 60 * 60 * 4;
+						Timestamp curr = new Timestamp(System.currentTimeMillis() - offset);
 						boolean expired = endTime.before(curr);
 						
 						//if auction is done - mark done

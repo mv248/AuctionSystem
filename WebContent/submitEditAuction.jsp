@@ -29,8 +29,9 @@
 		aps.setTimestamp(1, endTime);
 		aps.setInt(2, itemId);
 		aps.execute();
-		Timestamp curr = new Timestamp(System.currentTimeMillis());
-		boolean expired = endTime.before(endTime);
+		int offset = 1000 * 60 * 60 * 4;
+		Timestamp curr = new Timestamp(System.currentTimeMillis() - offset);
+		boolean expired = endTime.before(curr);
 		if (!expired) {
 			st.executeUpdate("UPDATE Auction set completed=0 WHERE itemId=" + itemId);
 		}

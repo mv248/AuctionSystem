@@ -18,6 +18,7 @@ td {
 <body>
 
 	<%
+	final String userId = session.getAttribute("userId").toString();
 	final String itemId = request.getParameter("itemId");
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection("jdbc:mysql://auctionsys.crgsn4ph3240.us-east-2.rds.amazonaws.com:3306/AuctionSystem", "patarj23", "4rjL34rnDB");
@@ -77,7 +78,7 @@ td {
 			<td>Condition:</td>
 			<td><%= item.getString("condition") %></td>
 			<%
-				if (!completed) {
+				if (!completed && userId.equals(auction.getString("sellerId")) == false) {
 					%>
 					<td> Place Bid:</td><td>
 						<form action="placeBid.jsp">
