@@ -1,1 +1,56 @@
 # AuctionSystem
+## Specification:
+- ### Create accounts/login/logout
+    -  Normal users can only change their account info
+- ### Auctions
+    - Seller makes auctions and posts items for sale
+        -  Set end date/time
+        -  Set Reserve price
+        -  Make required fields required
+        -  Mandatory relevant fields (condition, etc.)
+    -  Buyers can bid
+        -  Manually (let the buyer set new bid)
+        -  Automatic bidding
+            -  Put higher bid automatically for the user in case someone bids higher
+            -  Upper limit
+        -  Make sure bidding values are correct (> x, start/with increment)
+    -  Define winner of auction
+        -  If reserve is set:
+            -  If reserve is met, highest bid wins
+            -  If reserve is not met, no one wins
+        - If reserve is not set: highest bid wins
+- ### Browsing and advanced search functionality
+    -  Let people browse on the items and see the status of the current bidding
+    -  Sort/Search by different criteria
+        -  By type, bidding price, etc.
+    -  User can:
+        -  View all the history of bids for an auction
+        -  View list of all auctions a buyer/seller has participated in 
+        -  View list of “similar” items on auctions in preceding month
+            -  And auction information about them
+-  ### Alerts and messaging functions
+    -  Alert buyer that a higher bid has been placed
+    -  Alert buyer in case someone bids more than your upper limit (automatic bidding)
+    -  Let user set an alert for specific items
+        -  Get alert when item is available
+    -  User can post questions
+    -  User can search/browse questions/answers
+-  ### Customer Representatives
+    -  Answers to questions of users
+    -  Edits
+        -  Account information
+        -  Bids
+        -  Auctions
+    -  Removes
+    -  Bids
+    -  Auctions
+-  ### Admins
+    -  Creates accounts for customer reps
+    -  Generate sales reports for:
+        -  Total Earnings
+        -  Earnings per:
+            -  Item
+            -  Item Type
+            -  End-user
+        -  Best-selling items
+        -  Best Buyers
